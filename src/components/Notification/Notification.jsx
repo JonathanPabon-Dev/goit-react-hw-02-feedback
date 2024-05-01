@@ -10,9 +10,9 @@ class Notification extends Component {
 
   render() {
     return (
-      <div>
+      <>
         <p className={css.message}>{this.message}</p>
-      </div>
+      </>
     );
   }
 }

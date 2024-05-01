@@ -3,17 +3,11 @@ import PropTypes from 'prop-types';
 import css from './FeedbackOptions.module.css';
 
 class FeedbackOptions extends Component {
-  constructor(props) {
-    super(props);
-    this.options = this.props.options;
-    this.onLeaveFeedback = this.props.onLeaveFeedback;
-  }
-
   render() {
     return (
-      <div>
+      <>
         <ul className={css.btnList}>
-          {this.options.map(option => (
+          {this.props.options.map(option => (
             <li key={option}>
               <button
                 type="button"
@@ -26,7 +20,9 @@ class FeedbackOptions extends Component {
                     ? 'btn btn-danger'
                     : 'btn btn-secondary'
                 }
-                onClick={() => this.onLeaveFeedback(option)}
+                onClick={() => {
+                  this.props.onLeaveFeedback(option);
+                }}
               >
                 {option === 'good' ? (
                   <i className="bi bi-hand-thumbs-up"></i>
@@ -41,14 +37,13 @@ class FeedbackOptions extends Component {
             </li>
           ))}
         </ul>
-      </div>
+      </>
     );
   }
 }
 
 Notification.propTypes = {
   options: PropTypes.object,
-  onLeaveFeedback: PropTypes.func,
 };
 
 export default FeedbackOptions;
